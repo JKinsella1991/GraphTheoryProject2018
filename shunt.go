@@ -1,11 +1,11 @@
 //James Kinsella - G00282261@gmit.ie
-//Graph Theory Project 2018
+//Graph Theory Project 2018			
 
 package Graph_Project
 
 
-
 func Intopost(infix string) string {
+
 	specials := map[rune]int{'*': 10, '.': 9, '|': 8}
 	pofix := []rune{}
 	s := []rune{}

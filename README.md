@@ -1,3 +1,6 @@
+## James Kinsella - G00282261@gmit.ie ##
+## Graph Theory Project 2018 ##
+
 # GraphTheoryProject2018
 Repository for my Graph Theory project, using GoLang and Regular Expressions 
 
@@ -21,6 +24,21 @@ This will create a .exe file in your current directory.To launch the program
 Run to simply run the program in your command prompt enter the following
 
 -go run nfa.go
+
+Sources:
+
+Ian McLoughlin - Video series on golang shunting and nfa algorithms
+
+Shunting yard algorithm: 
+https://rosettacode.org/wiki/Parsing/Shunting-yard_algorithm
+
+Also:
+https://www.quora.com/What-is-the-shunting-yard-algorithm
+
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions
+
+https://www.regular-expressions.info/
+
 
 
 
