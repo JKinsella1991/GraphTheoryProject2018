@@ -20,7 +20,6 @@ func Poregtonfa(pofix string) *nfa {
 	for _, r := range pofix {
 		switch r {
 		case '.':
-		case '.':
 			frag2 := nfaStack[len(nfaStack)-1]
 			nfaStack = nfaStack[:len(nfaStack)-1]
 			frag1 := nfaStack[len(nfaStack)-1]
@@ -72,6 +71,56 @@ func Poregtonfa(pofix string) *nfa {
 			frag.accept.edge1 = &initial
 
 			nfaStack = append(nfaStack, &nfa{initial: frag.initial, accept: &accept})
+
+		default:
+			accept := state{}
+			initial := state{symbol: r, edge1: &accept}
+			nfaStack = append(nfaStack, &nfa{initial: &initial, accept: &accept})
+
+		} 
+	}
+
+	return nfaStack[0]
+}
+
+func addState(l []*state, s *state, a *state) []*state {
+	l = append(l, s)
+
+	if s != a && s.symbol == 0 {
+		l = addState(l, s.edge1, a)
+		if s.edge2 != nil {
+			l = addState(l, s.edge2, a)
+		}
+	}
+	return l
+} 
+
+func Pomatch(po string, s string) bool {
+	ismatch := false
+
+	ponfa := Poregtonfa(po)
+
+	current := []*state{}
+	next := []*state{}
+
+	current = addState(current[:], ponfa.initial, ponfa.accept)
+
+	for _, r := range s {
+		for _, c := range current {
+			if c.symbol == r {
+				next = addState(next[:], c.edge1, ponfa.accept)
+			}
+		}
+
+		current, next = next, []*state{}
+	}
+
+
+	for _, c := range current {
+		if c == ponfa.accept {
+			ismatch = true
+			break
+		}
 	}
 	return ismatch
 }
